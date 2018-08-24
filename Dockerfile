@@ -14,7 +14,7 @@ RUN pip install shadowsocks
 
 ADD https://download.libsodium.org/libsodium/releases/LATEST.tar.gz home/
 RUN cd home && tar xf LATEST.tar.gz  && rm LATEST.tar.gz && \
-    cd LATEST.tar.gz && ./configure &&  make && make check && make install
+    cd LATEST && ./configure &&  make && make check && make install
 RUN ldconfig
 
 ENV SERVER_ADDR= \
