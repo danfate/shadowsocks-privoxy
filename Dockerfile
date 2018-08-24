@@ -9,13 +9,9 @@ RUN \
   apk --update --upgrade add \
       py-pip \
       privoxy \
+      libsodium \
   && rm /var/cache/apk/*
 RUN pip install shadowsocks
-
-ADD https://download.libsodium.org/libsodium/releases/LATEST.tar.gz home/
-RUN cd home && tar xf libsodium-1.0.16.tar.gz && rm libsodium-1.0.16.tar.gz && \
-    cd libsodium-1.0.16 && ./configure && make && make check && make install
-RUN ldconfig
 
 ENV SERVER_ADDR= \
     SERVER_PORT=8899  \
