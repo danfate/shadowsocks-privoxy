@@ -15,7 +15,7 @@ RUN pip install shadowsocks
 
 ENV SERVER_ADDR= \
     SERVER_PORT=8899  \
-    METHOD=aes-256-cfb \
+    METHOD=chacha20 \
     TIMEOUT=300 \
     PASSWORD=
 
