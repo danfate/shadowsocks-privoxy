@@ -12,9 +12,9 @@ RUN \
   && rm /var/cache/apk/*
 RUN pip install shadowsocks
 
-ADD https://download.libsodium.org/libsodium/releases/libsodium-1.0.11.tar.gz home/
-RUN cd home && tar xf libsodium-1.0.11.tar.gz  && rm libsodium-1.0.11.tar.gz && \
-    cd libsodium-1.0.11 && ./configure &&  make && make check && make install
+ADD https://download.libsodium.org/libsodium/releases/LATEST.tar.gz home/
+RUN cd home && tar xf LATEST.tar.gz  && rm LATEST.tar.gz && \
+    cd LATEST.tar.gz && ./configure &&  make && make check && make install
 RUN ldconfig
 
 ENV SERVER_ADDR= \
