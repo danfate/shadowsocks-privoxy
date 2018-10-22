@@ -44,7 +44,7 @@ RUN runDeps="$( \
     apk add --no-cache --virtual .run-deps $runDeps && \
     apk del .build-deps && \
     rm -rf /tmp/* \
-  && rm /var/cache/apk/* \ 
+  && rm /var/cache/apk/* 
 
 ENV SERVER_ADDR= \
     SERVER_PORT=8899  \
