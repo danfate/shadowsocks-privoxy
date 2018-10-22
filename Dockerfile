@@ -1,9 +1,6 @@
 FROM alpine:latest
 MAINTAINER bluebu <bluebuwang@gmail.com>
 
-ENV SIMPLE_OBFS_VER 0.0.5
-ENV SIMPLE_OBFS_URL https://github.com/shadowsocks/simple-obfs/archive/v$SIMPLE_OBFS_VER.tar.gz
-ENV SIMPLE_OBFS_DIR simple-obfs-$SIMPLE_OBFS_VER
 
 #------------------------------------------------------------------------------
 # Environment variables:
@@ -15,21 +12,16 @@ RUN set -ex && \
       privoxy \
       libsodium \
   &&  apk add --no-cache --virtual \
-  	  git \
-  	  gcc \
-  	  autoconf \
-	  make \
-	  libtool \
-	  automake \
-	  zlib-devel \
-	  openssl \
-	  asciidoc \
-	  xmlto \
-	  libpcre32 \
-	  libev-dev \
-	  g++ \
-	  linux-headers \
-  && rm /var/cache/apk/* \ 
+  	  .build-deps \
+	    autoconf \
+	    automake \
+	    build-base \
+	    libev-dev \
+	    libtool \
+	    linux-headers \
+	    openssl-dev \
+	    pcre-dev && \
+
   &&  cd /tmp && \
     git clone --depth=1 https://github.com/shadowsocks/simple-obfs.git . && \
     git submodule update --init --recursive && \
@@ -39,7 +31,7 @@ RUN set -ex && \
     cd .. && \
     find /tmp -mindepth 1 -delete && \
     cd /tmp && \
-    pip install git+https://github.com/shadowsocks/shadowsocks.git@master && \
+    pip install git+https://github.com/shadowsocks/shadowsocks.git@master &&
 
 
     runDeps="$( \
@@ -50,7 +42,8 @@ RUN set -ex && \
     )" && \
     apk add --no-cache --virtual .run-deps $runDeps && \
     apk del .build-deps && \
-    rm -rf /tmp/*
+    rm -rf /tmp/* \
+  && rm /var/cache/apk/* \ 
 
 ENV SERVER_ADDR= \
     SERVER_PORT=8899  \
