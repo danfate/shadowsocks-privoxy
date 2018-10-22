@@ -31,8 +31,10 @@ RUN set -ex && \
     cd .. && \
     find /tmp -mindepth 1 -delete && \
     cd /tmp && \
-    pip install git+https://github.com/shadowsocks/shadowsocks.git@master && \
-    runDeps="$( \
+    
+RUN pip install git+https://github.com/shadowsocks/shadowsocks.git@master
+
+RUN runDeps="$( \
         scanelf --needed --nobanner /usr/bin/ss-* \
             | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
             | xargs -r apk info --installed \
