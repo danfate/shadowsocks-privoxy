@@ -22,7 +22,7 @@ RUN set -ex && \
 	    openssl-dev \
 	    pcre-dev && \
 
-  &&  cd /tmp && \
+    cd /tmp && \
     git clone --depth=1 https://github.com/shadowsocks/simple-obfs.git . && \
     git submodule update --init --recursive && \
     ./autogen.sh && \
