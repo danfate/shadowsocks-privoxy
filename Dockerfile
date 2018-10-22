@@ -18,6 +18,7 @@ RUN set -ex && \
 	    build-base \
 	    libev-dev \
 	    libtool \
+	    git \
 	    linux-headers \
 	    openssl-dev \
 	    pcre-dev && \
