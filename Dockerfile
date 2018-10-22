@@ -29,10 +29,11 @@ RUN set -ex && \
     ./configure --prefix=/usr --disable-documentation && make && \
     make install && \
     cd .. && \
-    find /tmp -mindepth 1 -delete && \
+    find /tmp -mindepth 1 -delete
     cd /tmp && \
     
-RUN pip install git+https://github.com/shadowsocks/shadowsocks.git@master
+RUN cd /tmp && \
+	pip install git+https://github.com/shadowsocks/shadowsocks.git@master
 
 RUN runDeps="$( \
         scanelf --needed --nobanner /usr/bin/ss-* \
