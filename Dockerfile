@@ -38,7 +38,8 @@ RUN set -ex && \
     make install && \
     cd .. && \
     find /tmp -mindepth 1 -delete && \
-    pip install git+https://github.com/shadowsocks/shadowsocks.git@master
+    cd /tmp && \
+    pip install git+https://github.com/shadowsocks/shadowsocks.git@master && \
 
 
     runDeps="$( \
