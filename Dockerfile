@@ -44,6 +44,7 @@ RUN runDeps="$( \
     apk add --no-cache --virtual .run-deps $runDeps && \
     apk del .build-deps && \
     rm -rf /tmp/* \
+  && apk add libev-dev \
   && rm /var/cache/apk/* 
 
 ENV SERVER_ADDR= \
